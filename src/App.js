@@ -1,16 +1,26 @@
 // import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-// import NewNavBar from './components/new-home/NewNavBar';
-// import ItemListContainer from './components/new-home/ItemListContainer';
-// import ComponenteEstado from './components/class4/ComponenteEstado';
-// import CharsList from './components/rickandmorty/CharsList';
-import SpeciesList from './components/starwars/SpeciesList';
+
+import CharList from './components/videogame/CharList';
+import CharDetailContainer from './components/videogame/CharDetailContainer';
+import Home from './components/videogame/Home';
+import NavBar from './components/videogame/NavBar';
 
 function App() {
 
   return (
     <>
-      <SpeciesList></SpeciesList>
+      <BrowserRouter>
+        <NavBar></NavBar>
+        <Routes>
+          <Route index element={<Home/>}></Route>
+          <Route path='lista' element={<CharList/>}></Route>
+          <Route path='personaje'>
+            <Route path=':charId' element={<CharDetailContainer/>}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
