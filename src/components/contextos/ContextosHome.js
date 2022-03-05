@@ -1,24 +1,21 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import CounterContainer from "./CounterContainer"
 
-import CounterContext from "./context/counterContext"
+import {CounterContext} from "./context/counterContext"
 
 const ContextosHome = () => {
 
-  const [counter, setCounter] = useState(0)
-
-  const addHandler = () => {
-    setCounter(counter + 1)
-  }
+  const {count, add, sub} = useContext(CounterContext)
 
   return (
-    <CounterContext.Provider value={counter}>
+    <>
       <div>ContextosHome</div>
-      <h1>{counter}</h1>
-      <button onClick={addHandler}>Aumenta contador</button>
+      <h1>{count}</h1>
+      <button onClick={()=>{add()}}>Aumenta contador</button>
+      <button onClick={()=>{sub()}}>Decrementa contador</button>
 
       <CounterContainer></CounterContainer>
-    </CounterContext.Provider>
+    </>
   )
 }
 export default ContextosHome
