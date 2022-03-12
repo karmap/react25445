@@ -56,6 +56,23 @@ const Card = ({mensaje, error}) => {
 
 const Titulo = React.memo( ({numero}) => {
   console.log('Titulo hizo render');
+
+  useEffect(() => {
+    getChars()
+  }, [])
+  
+  const getChars = () => {
+    const URL = 'https://rickandmortyapi.com/api/character'
+
+    fetch(URL)
+      .then( res => res.json() )
+      .then( res => {
+        console.log(res);
+        return res.results
+        // setChars(res.results)
+      })
+  }
+
   return (
     <div>Esta es una cabecera {numero}</div>
   )
