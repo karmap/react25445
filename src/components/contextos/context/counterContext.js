@@ -1,10 +1,14 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 
 export const CounterContext = React.createContext({
   count: 0,
   add: () => {},
   sub: () => {}
 })
+
+export const useCounter = () => {
+  return useContext(CounterContext)
+}
 
 export const CounterContextProvider = ( {children} ) => {
 

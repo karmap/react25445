@@ -1,10 +1,8 @@
-import { useContext } from "react"
-
-import {CounterContext} from "./context/counterContext"
+import {useCounter} from "./context/counterContext"
 
 const CounterCard = () => {
 
-  const {count, add} = useContext(CounterContext)
+  const {count, add} = useCounter()
 
   return (
     <>

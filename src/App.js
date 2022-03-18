@@ -1,6 +1,8 @@
 // import { CounterContextProvider } from "./components/contextos/context/counterContext";
-// import ContextosHome from "./components/contextos/ContextosHome";
+import ContextosHome from "./components/contextos/ContextosHome";
 // import Condicional from "./components/redercondicional/Condicional";
+import { CounterContextProvider } from "./components/contextos/context/counterContext";
+// import CounterContainer from "./components/contextos/CounterContainer";
 import PhoneListContainer from "./components/redercondicional/PhoneListContainer";
 // import EventsHome from "./components/events/EventsHome";
 // import TiendaApp from "./components/tienda/TiendaApp";
@@ -9,7 +11,10 @@ import PhoneListContainer from "./components/redercondicional/PhoneListContainer
 function App() {
 
   return (
-    <PhoneListContainer/>
+    // <PhoneListContainer/>
+    <CounterContextProvider>
+      <ContextosHome></ContextosHome>
+    </CounterContextProvider>
   );
 }
 

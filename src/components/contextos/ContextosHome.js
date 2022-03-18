@@ -1,11 +1,10 @@
-import { useContext, useState } from "react"
 import CounterContainer from "./CounterContainer"
 
-import {CounterContext} from "./context/counterContext"
+import {useCounter} from "./context/counterContext"
 
 const ContextosHome = () => {
 
-  const {count, add, sub} = useContext(CounterContext)
+  const {count, add, sub} = useCounter()
 
   return (
     <>
