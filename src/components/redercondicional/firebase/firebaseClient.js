@@ -1,24 +1,28 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, query, where, getDoc, doc } from "firebase/firestore"
+import { getFirestore, collection, getDocs, query, where, getDoc, doc, addDoc } from "firebase/firestore"
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCGX0wl3ScuXfo03kG4BRdfiwtl__kwBNg",
-  authDomain: "react25445.firebaseapp.com",
-  projectId: "react25445",
-  storageBucket: "react25445.appspot.com",
-  messagingSenderId: "293282598240",
-  appId: "1:293282598240:web:ee9607d169a3a8c3c02205"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID
 };
+
+console.log('env', process.env.REACT_APP_FIREBASE_API_KEY);
+console.log(process.env.authDomain);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore()
 const productsCollection = collection(db, "products")
+const ordersCollection = collection(db, "orders")
 
 export const getProducts = async () => {
 
@@ -53,4 +57,9 @@ export const getProductById = async (id) => {
   const docSnap = await getDoc(docRef);
 
   return docSnap.data()
+}
+
+export const addOrder = async (order) => {
+  const docSnap = await addDoc(ordersCollection, order)
+  return docSnap.id
 }
